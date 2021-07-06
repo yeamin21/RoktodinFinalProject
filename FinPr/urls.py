@@ -14,14 +14,14 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from users.viewsets import UserViewSet
-from donation.viewsets import DonationViewSet
+from donation.viewsets import BloodRequestViewSet
 from django.conf.urls import include
 from django.contrib import admin
 from django.urls import path
 from rest_framework import routers
 
 router = routers.DefaultRouter()
-router.register('donations', DonationViewSet)
+router.register('requests', BloodRequestViewSet)
 router.register('users', UserViewSet)
 urlpatterns = [
     path('admin/', admin.site.urls),

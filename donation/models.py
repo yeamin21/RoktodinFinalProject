@@ -2,9 +2,7 @@ from django.db import models
 from users.models import User
 
 
-class Donation(models.Model):
-    donor = models.ForeignKey(
-        User, on_delete=models.CASCADE, related_name='user_donor')
+class BloodRequest(models.Model):
     receiver = models.ForeignKey(
         User, on_delete=models.CASCADE, related_name='user_receiver')
     no_bag_required = models.IntegerField()

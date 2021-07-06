@@ -1,10 +1,10 @@
 from django.db import models
 from django.db.models import fields
 from rest_framework import serializers
-from donation.models import Donation
+from donation.models import BloodRequest
 
 
-class DonationSerializer(serializers.ModelSerializer):
+class BloodSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Donation
+        model = BloodRequest
         fields = '__all__'
