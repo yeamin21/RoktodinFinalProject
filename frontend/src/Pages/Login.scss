@@ -1,0 +1,16 @@
+.login{
+    display: flex;
+    flex-direction: column;
+ form{
+     display: flex;
+     flex-direction: column;
+     align-self: center;
+     gap: 1.5rem;
+     width: 20rem;
+     input{
+         height: 2rem; 
+         border-radius: .25rem;  
+     }
+ }
+    
+}

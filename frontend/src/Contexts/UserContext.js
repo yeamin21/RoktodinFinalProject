@@ -7,6 +7,7 @@ export const UserContext = createContext({
   refresh: "",
   authenticated: false,
   authenticate: () => {},
+  logout:()=>{}
 });
 
 export default class UserContextProvider extends Component {
@@ -17,9 +18,11 @@ export default class UserContextProvider extends Component {
       refresh: "",
       authenticated: false,
       authenticate: this.authenticate,
+      logout: this.logout
     };
     this.authenticate = this.authenticate.bind(this);
     this.validate = this.validate.bind(this);
+    this.logout = this.logout.bind(this)
   }
   componentDidMount() {
     const stored_token = localStorage.getItem("auth");
@@ -44,7 +47,10 @@ export default class UserContextProvider extends Component {
         localStorage.setItem("auth", JSON.stringify(access,refresh));
       });
   };
-
+  logout=()=>
+  {
+    this.setState({authenticated:false, refresh:'', access:''},localStorage.removeItem('auth'))
+  }
   render() {
     return (
       <UserContext.Provider value={this.state}>

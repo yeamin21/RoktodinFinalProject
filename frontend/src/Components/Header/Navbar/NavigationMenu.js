@@ -1,7 +1,7 @@
 import { NavLink } from "react-router-dom";
 import { UserContext } from "../../../Contexts/UserContext";
-import { useContext } from "react";
-
+import { Component, useContext } from "react";
+import "./NavigationMenu.scss"
 export default function NavigationMenu() {
   return (
     <div className="nav-menu">
@@ -25,7 +25,7 @@ function NavList() {
   ];
 
   return (
-    <div className="nav-list">
+    <div className="primary">
       {items.map((item, key) => (
         <NavLink
           exact = {item.exact}
@@ -39,8 +39,8 @@ function NavList() {
   );
 }
 
-function UserNav() {
-  const items = [
+class UserNav extends Component {
+ items = [
     {
       to: "login",
       name: "Login",
@@ -52,18 +52,28 @@ function UserNav() {
       exact: true,
     },
   ];
-  const userContext = useContext(UserContext);
+  
+  render(){
+
+
   return (
-    <div>
-      {userContext.authenticated ? (
-        <NavLink exact={items[1].exact} to={items[1].to}>
-          {items[1].name}
+<UserContext.Consumer>
+{({authenticated,logout})=>
+
+
+<div className="user">
+     { authenticated ? (
+        <NavLink exact={this.items[1].exact} onClick={logout} to={this.items[1].to}>
+          {this.items[1].name}
         </NavLink>
       ) : (
-        <NavLink exact={items[0].exact} to={items[0].to}>
-          {items[0].name}
+        <NavLink exact={this.items[0].exact} to={this.items[0].to}>
+          {this.items[0].name}
         </NavLink>
       )}
     </div>
+  }
+    </UserContext.Consumer>
   );
+}
 }
