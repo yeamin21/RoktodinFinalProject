@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useState } from "react";
 import UserContextProvider, {UserContext} from "../Contexts/UserContext";
-
+import "./Login.scss"
 
 export default function Login() {
   const [username, setUsername] = useState();
@@ -18,8 +18,8 @@ export default function Login() {
       onChange={(e) => setPassword(e.target.value)}
     ></input>
     <input
-      type="submit">
-      </input>
+      type="submit" value="login">
+    </input>
   </form>
 </div>
   }   
