@@ -1,6 +1,7 @@
 import { Component } from "react";
+import Card from "../Components/Card";
 import { axiosInstace } from "../Services/ApiCalls";
-
+import "./Requests.scss"
 export default class Requests extends Component {
   constructor(props) {
     super(props);
@@ -13,8 +14,9 @@ export default class Requests extends Component {
     const { list } = this.state;
     return (
       <div className="requests">
+  
         {list.map((item) => (
-          <div className="request">{item}</div>
+          <div className="request"><Card item={item}></Card></div>
         ))}
       </div>
     );
