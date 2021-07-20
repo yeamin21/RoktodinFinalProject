@@ -7,7 +7,7 @@ export const UserContext = createContext({
   refresh: "",
   authenticated: false,
   authenticate: () => {},
-  logout:()=>{}
+  logout: () => {},
 });
 
 export default class UserContextProvider extends Component {
@@ -18,39 +18,50 @@ export default class UserContextProvider extends Component {
       refresh: "",
       authenticated: false,
       authenticate: this.authenticate,
-      logout: this.logout
+      logout: this.logout,
     };
     this.authenticate = this.authenticate.bind(this);
     this.validate = this.validate.bind(this);
-    this.logout = this.logout.bind(this)
+    this.logout = this.logout.bind(this);
   }
   componentDidMount() {
     const stored_token = localStorage.getItem("auth");
-    stored_token
-     && this.setState(JSON.parse(stored_token), () => this.validate())
-    
+    console.log(stored_token);
+    stored_token &&
+      stored_token !== "undefined" &&
+      this.setState(JSON.parse(stored_token), () => this.validate());
   }
   validate = () =>
     axiosInstace
       .get("users/", {
         headers: { Authorization: `Bearer ${this.state.access}` },
       })
-      .then(() => this.setState({ authenticated: true }));
+      .then((res) =>
+        this.setState({ authenticated: true, username: res.data.username })
+      )
+      .catch((err) => this.setState({ authenticated: false }));
+
   authenticate = (username, password) => {
     axiosInstace
       .post("/token/", { username: username, password: password })
       .then((res) => {
         const { access, refresh } = res.data;
-        this.setState( {access, refresh, authenticated:true}); return {access,refresh};
+        this.setState({ access, refresh });
+        return { access, refresh };
       })
-      .then((access,refresh) => {
-        localStorage.setItem("auth", JSON.stringify(access,refresh));
-      });
+      .then(() => this.validate())
+      .then(() => {
+        const { access, refresh } = this.state;
+        localStorage.setItem("auth", JSON.stringify({ access, refresh }));
+      })
+      .catch((err) => this.setState({ authenticated: false }));
   };
-  logout=()=>
-  {
-    this.setState({authenticated:false, refresh:'', access:''},localStorage.removeItem('auth'))
-  }
+  logout = () => {
+    this.setState(
+      { authenticated: false, refresh: "", access: "" },
+      localStorage.removeItem("auth")
+    );
+  };
   render() {
     return (
       <UserContext.Provider value={this.state}>

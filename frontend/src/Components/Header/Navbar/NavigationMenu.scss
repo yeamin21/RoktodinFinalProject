@@ -1,27 +1,27 @@
-.nav-menu{
+.nav-menu {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  background-color: rgba(228, 54, 54, 0.849);
+  height: 50px;
+  flex-wrap: wrap;
+  align-items: center;
+  border-radius: 1.25em;
+  margin: 1rem;
+  padding: 0 2rem 0 2rem;
+  .active {
+    color: rgba(225, 228, 67, 0.925);
+  }
+  & > div {
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    background-color: rgba(228, 54, 54, 0.849);
-    height: 6vh;
+    gap: 1rem;
     flex-wrap: wrap;
-    align-items: center;
-    border-radius: 1.25em;
-    margin: 1rem;
-    padding:  0 2rem 0 2rem;
-   .active{
-       color: rgba(225, 228, 67, 0.925);
-   }
-    & > div{
-        display: flex;
-        gap: 1rem;
-        flex-wrap: wrap; 
-        a{
-            color: rgb(241, 234, 220);
-            text-decoration: none;
-            &:hover{
-                color: rgba(225, 228, 67, 0.925);
-            }
-        }
+    a {
+      color: rgb(241, 234, 220);
+      text-decoration: none;
+      &:hover {
+        color: rgba(225, 228, 67, 0.925);
+      }
     }
+  }
 }
