@@ -1,0 +1,15 @@
+.home {
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+  .feat {
+    width: 20rem;
+    height: 20rem;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 #7caadf;
+    padding: 2rem;
+
+    &:nth-child(2n) {
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 #ffadba;
+    }
+  }
+}

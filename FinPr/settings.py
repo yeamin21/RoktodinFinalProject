@@ -39,10 +39,13 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'corsheaders',
+    'twilio',
     'rest_framework',
     'rest_framework_simplejwt',
+    'phonenumber_field',
     'users',
-    'donation'
+    'donation',
+
 ]
 
 MIDDLEWARE = [
@@ -110,7 +113,7 @@ AUTH_USER_MODEL = 'users.User'
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': ('rest_framework_simplejwt.authentication.JWTAuthentication',)
-} 
+}
 CORS_ALLOW_ALL_ORIGINS = True
 CORS_URLS_REGEX = r'^/api.*'
 
@@ -143,7 +146,6 @@ SIMPLE_JWT = {
     'SLIDING_TOKEN_LIFETIME': timedelta(minutes=5),
     'SLIDING_TOKEN_REFRESH_LIFETIME': timedelta(days=1),
 }
-
 
 
 # Internationalization

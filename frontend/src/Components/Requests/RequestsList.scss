@@ -1,0 +1,6 @@
+.requests {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 20rem);
+  grid-template-rows: repeat(auto-fit, 20rem);
+  justify-content: center;
+}

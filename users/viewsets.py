@@ -1,6 +1,6 @@
 from rest_framework import response, viewsets
-from users.models import User
-from users.serializers import UserSerializer
+from users.models import Donor, User
+from users.serializers import DonorSerializer, UserSerializer
 from rest_framework import permissions
 
 class UserViewSet(viewsets.ModelViewSet):
@@ -12,3 +12,7 @@ class UserViewSet(viewsets.ModelViewSet):
         user = User.objects.get(username=request.user.username)
         serializer = self.get_serializer(user)
         return response.Response(serializer.data)
+
+class DonorViewSet(viewsets.ModelViewSet):
+    serializer_class = DonorSerializer
+    queryset = Donor.objects.all()

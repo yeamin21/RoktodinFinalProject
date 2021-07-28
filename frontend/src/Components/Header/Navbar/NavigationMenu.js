@@ -22,6 +22,11 @@ function NavList() {
       name: "Requests",
       exact: true,
     },
+    {
+      to: "donors",
+      name: "Donors",
+      exact: true,
+    },
   ];
 
   return (

@@ -1,6 +1,5 @@
 import { Component, createContext } from "react";
 import { Redirect } from "react-router-dom";
-import Login from "../Pages/Login";
 import { axiosInstace } from "../Services/ApiCalls";
 export const UserContext = createContext({
   access: "",
