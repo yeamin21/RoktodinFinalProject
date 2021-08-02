@@ -27,6 +27,16 @@ function NavList() {
       name: "Donors",
       exact: true,
     },
+    {
+      to: "track",
+      name: "Track Your Request",
+      exact: true,
+    },
+    {
+      to: "emergency",
+      name: "Emergency",
+      exact: true,
+    },
   ];
 
   return (

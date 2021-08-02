@@ -7,6 +7,15 @@ export const axiosInstace = axios.create({
   timeout: timeout,
 });
 
+// axiosInstace.interceptors.response.use(
+//   () => console.log("success"),
+//   (err) => console.log(err.status.code)
+// );
+
 export const retrieve = async (param, query) => {
-  return await axiosInstace.get(param);
+  try {
+    return await axiosInstace.get(param);
+  } catch (r) {
+    console.log(r);
+  }
 };

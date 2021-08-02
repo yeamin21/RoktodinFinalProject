@@ -1,6 +1,6 @@
 import { Component } from "react";
 import { Link } from "react-router-dom";
-import { retrieve } from "../../Services/ApiCalls";
+import { axiosInstace, retrieve } from "../../Services/ApiCalls";
 import Card from "../Card";
 import "./DonorLIst.scss";
 export default class DonorList extends Component {
@@ -15,7 +15,8 @@ export default class DonorList extends Component {
     retrieve("donors/").then((res) => this.setState({ donors: res.data }));
   }
 
-  askForNumber = () => console.log("asked");
+  askForNumber = () =>
+    axiosInstace.post("notify/").then((res) => console.log(res));
   render() {
     return (
       <div className="donor-list">

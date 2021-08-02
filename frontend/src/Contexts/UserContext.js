@@ -38,6 +38,12 @@ export default class UserContextProvider extends Component {
       .then((res) =>
         this.setState({ authenticated: true, username: res.data.username })
       )
+      .then(
+        () =>
+          (axiosInstace.defaults.headers.common[
+            "Authorization"
+          ] = `Bearer ${this.state.access}`)
+      )
       .catch((err) => this.setState({ authenticated: false }));
 
   authenticate = (username, password) => {

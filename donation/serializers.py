@@ -8,3 +8,6 @@ class BloodSerializer(serializers.ModelSerializer):
     class Meta:
         model = BloodRequest
         fields = '__all__'
+
+    def to_representation(self, instance):
+        return super().to_representation(instance)

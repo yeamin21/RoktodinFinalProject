@@ -43,8 +43,10 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework_simplejwt',
     'phonenumber_field',
+    'social_django',
     'users',
     'donation',
+
 
 ]
 
@@ -90,6 +92,12 @@ DATABASES = {
     }
 }
 
+AUTHENTICATION_BACKENDS = [
+    'social_core.backends.linkedin.LinkedinOAuth2',
+    'social_core.backends.instagram.InstagramOAuth2',
+    'social_core.backends.facebook.FacebookOAuth2',
+    'django.contrib.auth.backends.ModelBackend',
+]
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
@@ -108,6 +116,10 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+
+SOCIAL_AUTH_FACEBOOK_KEY = "825408884784265"       # App ID
+SOCIAL_AUTH_FACEBOOK_SECRET = "ccc63697cbe7ac573b8f0e9ec217831b"  # App Secret
+
 
 AUTH_USER_MODEL = 'users.User'
 
