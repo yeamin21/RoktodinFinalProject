@@ -1,16 +1,17 @@
-.login{
+.login {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  form {
     display: flex;
     flex-direction: column;
- form{
-     display: flex;
-     flex-direction: column;
-     align-self: center;
-     gap: 1.5rem;
-     width: 20rem;
-     input{
-         height: 2rem; 
-         border-radius: .25rem;  
-     }
- }
-    
+    align-self: center;
+    gap: 1rem;
+  }
+}
+.btn-set {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  justify-content: space-around;
 }

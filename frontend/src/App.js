@@ -6,7 +6,7 @@ import Requests from "./Pages/Requests";
 import UserContextProvider, { UserContext } from "./Contexts/UserContext";
 import { useContext } from "react";
 import Profile from "./Pages/Profile";
-import Login from "./Components/Profile/Login";
+import Login, { SignUp } from "./Components/Profile/Login";
 import Donors from "./Pages/Donors";
 import Home from "./Pages/Home";
 
@@ -39,6 +39,7 @@ function Body(props) {
       <Route path="/requests" component={Requests}></Route>
       <Route path="/profile" component={Profile}></Route>
       <Route path="/donors" component={Donors}></Route>
+      <Route path="/signup" component={SignUp}></Route>
     </body>
   );
 }
