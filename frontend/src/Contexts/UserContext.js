@@ -32,7 +32,7 @@ export default class UserContextProvider extends Component {
   }
   validate = () =>
     axiosInstace
-      .get("users/", {
+      .get("user/", {
         headers: { Authorization: `Bearer ${this.state.access}` },
       })
       .then((res) =>

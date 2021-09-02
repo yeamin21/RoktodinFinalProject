@@ -1,8 +1,18 @@
 import axios from "axios";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { UserContext } from "../../Contexts/UserContext";
-import { Button, TextInput, TextInputField } from "evergreen-ui";
+import {
+  Button,
+  IconButton,
+  Label,
+  LocateIcon,
+  TextInput,
+  TextInputField,
+} from "evergreen-ui";
 import "./Login.scss";
+import GeoLocationProvider, {
+  GeoLocation,
+} from "../../Contexts/LocationContext";
 import { BiLogInCircle } from "react-icons/bi";
 import { Redirect, useHistory } from "react-router-dom";
 export default function Login() {
@@ -49,11 +59,29 @@ export default function Login() {
 }
 
 export function SignUp() {
+  const geoLocation = useContext(GeoLocation);
+  const [Location, setlocation] = useState();
+  const getLocation = (e) => {
+    e.preventDefault();
+    setlocation({ geoLocation });
+  };
   return (
     <div className="login">
       <form>
         <TextInput placeholder="choose username" />
         <TextInput placeholder="email" type="email" />
+        <div>
+          <TextInput
+            placeholder="location"
+            value={Location.full_address}
+            onChange={(e) => setlocation(e.target.value)}
+            type="text"
+          />
+          <IconButton
+            icon={LocateIcon}
+            onClick={(e) => getLocation(e)}
+          ></IconButton>
+        </div>
         <TextInput placeholder="password" type="password" />
         <Button appearance="primary" iconAfter={BiLogInCircle}>
           SignUp

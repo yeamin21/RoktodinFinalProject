@@ -6,19 +6,23 @@ import Requests from "./Pages/Requests";
 import UserContextProvider, { UserContext } from "./Contexts/UserContext";
 import { useContext } from "react";
 import Profile from "./Pages/Profile";
-import Login, { SignUp } from "./Components/Profile/Login";
+import Login from "./Components/Profile/Login";
+import SignUp from "./Components/Profile/SignUp";
 import Donors from "./Pages/Donors";
 import Home from "./Pages/Home";
-
+import GeoLocationProvider from "./Contexts/LocationContext";
+import { FaReact } from "react-icons/fa";
 function App() {
   const context = useContext(UserContext);
   console.log(context);
   return (
     <BrowserRouter>
       <UserContextProvider>
-        <Header></Header>
-        <Body></Body>
-        <Footer></Footer>
+        <GeoLocationProvider>
+          <Header></Header>
+          <Body></Body>
+          <Footer></Footer>
+        </GeoLocationProvider>
       </UserContextProvider>
     </BrowserRouter>
   );
@@ -45,7 +49,11 @@ function Body(props) {
 }
 
 function Footer() {
-  return <footer></footer>;
+  return (
+    <footer>
+      <FaReact size="100px" color="blue"></FaReact>
+    </footer>
+  );
 }
 
 export default App;

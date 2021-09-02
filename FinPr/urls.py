@@ -13,7 +13,8 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from users.viewsets import DonorViewSet, RequestToCallOrEmailViewSet, UserViewSet
+from users.models import User
+from users.viewsets import DonorViewSet, RequestToCallOrEmailViewSet, UserLocationViewSet, UserViewSet
 from donation.viewsets import BloodRequestViewSet, send
 from django.conf.urls import include
 from django.contrib import admin
@@ -33,7 +34,10 @@ router.register('notify', RequestToCallOrEmailViewSet)
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include(router.urls)),
+    # path('api/users/', UserViewSet.as_view(), name='get_allUser'),
+    path('api/user/', UserViewSet.as_view({'get': 'retrieve'}), name='get_user'),
     path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('social-auth/', include('social_django.urls', namespace="social")),
+    path('api/user-location/', UserLocationViewSet.as_view())
 ]

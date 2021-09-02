@@ -1,4 +1,5 @@
 from django.db.models import fields
+from geocoder.api import postal
 from rest_framework import serializers
 from users.models import Donor, RequestPhoneOrEmail, User
 
@@ -24,3 +25,13 @@ class RequestPhoneOrEmailSerializer(serializers.ModelSerializer):
     class Meta:
         model = RequestPhoneOrEmail
         fields = '__all__'
+
+
+class UserLocation(serializers.Serializer):
+    latitude = serializers.DecimalField(max_digits=10, decimal_places=8)
+    longitude = serializers.DecimalField(max_digits=11, decimal_places=8)
+    # city
+    # country
+    # postal
+    # road
+    # country_code
