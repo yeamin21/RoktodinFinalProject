@@ -1,7 +1,16 @@
 import axios from "axios";
 import { useState, useContext } from "react";
 import { UserContext } from "../../Contexts/UserContext";
-import { Button, IconButton, LocateIcon, TextInput } from "evergreen-ui";
+import {
+  Button,
+  Checkbox,
+  IconButton,
+  LocateIcon,
+  Option,
+  Select,
+  SelectField,
+  TextInput,
+} from "evergreen-ui";
 import "./Login.scss";
 import GeoLocationProvider, {
   GeoLocation,
@@ -15,6 +24,7 @@ export default class SignUp extends Component {
     super(props);
     this.state = {
       geoLocation: "",
+      checked: false,
     };
 
     this.getLocation = this.getLocation.bind(this);
@@ -43,6 +53,28 @@ export default class SignUp extends Component {
             ></IconButton>
           </div>
           <TextInput placeholder="password" type="password" />
+          <Checkbox
+            checked={this.state.checked}
+            onChange={() =>
+              this.setState((prev) => ({ checked: !prev.checked }))
+            }
+            label="Sign me as a donor"
+          ></Checkbox>
+          {this.state.checked ? (
+            <form>
+              <SelectField label="Blood Group" required>
+                <option>A+</option>
+                <option>A-</option>
+                <option>B+</option>
+                <option>B-</option>
+                <option>O+</option>
+                <option>O-</option>
+                <option>AB+</option>
+                <option>AB-</option>
+              </SelectField>
+            </form>
+          ) : null}
+
           <Button appearance="primary" iconAfter={BiLogInCircle}>
             SignUp
           </Button>

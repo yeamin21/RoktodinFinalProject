@@ -19,3 +19,14 @@ class RequestPhoneOrEmail(models.Model):
     requesting_user = models.ForeignKey(User, on_delete=models.CASCADE)
     requested_user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='donor_user')
     message_body = models.CharField(max_length=70)
+
+
+class Address(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    address_1 = models.CharField(max_length=60)
+    address_2 = models.CharField(max_length=60, null=True, blank=True)
+    postal = models.IntegerField(max_length=6)
+    city = models.CharField(max_length=40)
+    district = models.CharField(max_length=40)
+    division = models.CharField(max_length=40)
+    country = models.CharField(max_length=40)
