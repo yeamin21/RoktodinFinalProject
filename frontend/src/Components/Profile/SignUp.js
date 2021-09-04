@@ -16,6 +16,7 @@ import GeoLocationProvider, {
   GeoLocation,
 } from "../../Contexts/LocationContext";
 import { BiLogInCircle } from "react-icons/bi";
+import { VscEye, VscEyeClosed } from "react-icons/vsc";
 import { Component } from "react";
 
 export default class SignUp extends Component {
@@ -24,7 +25,8 @@ export default class SignUp extends Component {
     super(props);
     this.state = {
       geoLocation: "",
-      checked: false,
+      as_donor: false,
+      show_password: false,
     };
 
     this.getLocation = this.getLocation.bind(this);
@@ -47,33 +49,46 @@ export default class SignUp extends Component {
               onChange={(e) => this.setState({ geoLocation: e.target.value })}
               type="text"
             />
+
             <IconButton
               icon={LocateIcon}
               onClick={(e) => this.getLocation(e)}
             ></IconButton>
           </div>
-          <TextInput placeholder="password" type="password" />
+
+          <SelectField label="Blood Group">
+            <option>A+</option>
+            <option>A-</option>
+            <option>B+</option>
+            <option>B-</option>
+            <option>O+</option>
+            <option>O-</option>
+            <option>AB+</option>
+            <option>AB-</option>
+          </SelectField>
+          <div>
+            <TextInput
+              placeholder="password"
+              type={this.state.show_password ? "text" : "password"}
+            />
+            <IconButton
+              icon={this.state.show_password ? VscEyeClosed : VscEye}
+              onClick={(e) => {
+                e.preventDefault();
+                this.setState((prev) => ({
+                  show_password: !prev.show_password,
+                }));
+              }}
+            ></IconButton>
+          </div>
+
           <Checkbox
-            checked={this.state.checked}
+            checked={this.state.as_donor}
             onChange={() =>
-              this.setState((prev) => ({ checked: !prev.checked }))
+              this.setState((prev) => ({ as_donor: !prev.checked }))
             }
             label="Sign me as a donor"
           ></Checkbox>
-          {this.state.checked ? (
-            <form>
-              <SelectField label="Blood Group" required>
-                <option>A+</option>
-                <option>A-</option>
-                <option>B+</option>
-                <option>B-</option>
-                <option>O+</option>
-                <option>O-</option>
-                <option>AB+</option>
-                <option>AB-</option>
-              </SelectField>
-            </form>
-          ) : null}
 
           <Button appearance="primary" iconAfter={BiLogInCircle}>
             SignUp
