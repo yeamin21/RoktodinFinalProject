@@ -9,8 +9,17 @@ class User(AbstractUser):
 
 
 class Donor(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-    blood_group = models.CharField(max_length=2, choices=[('a+', 'a+'), ('b+', 'b+')])
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='donor_details')
+    blood_group = models.CharField(
+        max_length=3,
+        choices=[('a+', 'a+'),
+                 ('b+', 'b+'),
+                 ('a-', 'a-'),
+                 ('b-', 'b-'),
+                 ('ab+', 'ab+'),
+                 ('ab-', 'ab-'),
+                 ('o+', 'o+'),
+                 ('o-', 'o-')])
     phone = PhoneNumberField(blank=False, null=False)
     share_phone = models.BooleanField(default=True)
 
@@ -22,9 +31,9 @@ class RequestPhoneOrEmail(models.Model):
 
 
 class Address(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    address_1 = models.CharField(max_length=60)
-    address_2 = models.CharField(max_length=60, null=True, blank=True)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='user_address')
+    address_line_1 = models.CharField(max_length=60)
+    address_line_2 = models.CharField(max_length=60, null=True, blank=True)
     postal = models.IntegerField(max_length=6)
     city = models.CharField(max_length=40)
     district = models.CharField(max_length=40)

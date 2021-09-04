@@ -1,13 +1,13 @@
 from django.db.models import fields
 from geocoder.api import postal
 from rest_framework import serializers
-from users.models import Donor, RequestPhoneOrEmail, User
+from users.models import Address, Donor, RequestPhoneOrEmail, User
 
 
 class DonorSerializer(serializers.ModelSerializer):
     class Meta:
         model = Donor
-        fields = '__all__'
+        fields = ['blood_group', 'phone', 'share_phone']
 
     def to_representation(self, instance):
         if not instance.share_phone:
@@ -15,10 +15,19 @@ class DonorSerializer(serializers.ModelSerializer):
         return super().to_representation(instance)
 
 
+class AddressSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Address
+        fields = ['address_line_1', 'address_line_2', 'city', 'district', 'division', 'postal', 'country']
+
+
 class UserSerializer(serializers.ModelSerializer):
+    donor_details = DonorSerializer(required=False)
+    user_address = AddressSerializer(required=False)
+
     class Meta:
         model = User
-        fields = ['username', 'first_name', 'last_name', 'email']
+        fields = ['username', 'first_name', 'last_name', 'email', 'donor_details', 'user_address']
 
 
 class RequestPhoneOrEmailSerializer(serializers.ModelSerializer):
