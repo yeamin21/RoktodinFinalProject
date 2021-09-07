@@ -1,17 +1,16 @@
-import logo from "./logo.svg";
+import { useContext } from "react";
+import { FaReact } from "react-icons/fa";
+import { BrowserRouter, Route } from "react-router-dom";
 import "./App.scss";
 import NavigationMenu from "./Components/Header/Navbar/NavigationMenu";
-import { BrowserRouter, Route } from "react-router-dom";
-import Requests from "./Pages/Requests";
-import UserContextProvider, { UserContext } from "./Contexts/UserContext";
-import { useContext } from "react";
-import Profile from "./Pages/Profile";
 import Login from "./Components/Profile/Login";
 import SignUp from "./Components/Profile/SignUp";
+import GeoLocationProvider from "./Contexts/LocationContext";
+import UserContextProvider, { UserContext } from "./Contexts/UserContext";
 import Donors from "./Pages/Donors";
 import Home from "./Pages/Home";
-import GeoLocationProvider from "./Contexts/LocationContext";
-import { FaReact } from "react-icons/fa";
+import Profile from "./Pages/Profile";
+import Requests from "./Pages/Requests";
 function App() {
   const context = useContext(UserContext);
   console.log(context);

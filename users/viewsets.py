@@ -30,7 +30,6 @@ class RequestToCallOrEmailViewSet(viewsets.ModelViewSet):
     queryset = RequestPhoneOrEmail.objects.all()
 
     def create(self, request, *args, **kwargs):
-
         return super().create(request, *args, **kwargs)
 
 

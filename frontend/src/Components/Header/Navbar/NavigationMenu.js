@@ -1,6 +1,6 @@
 import { NavLink } from "react-router-dom";
 import { UserContext } from "../../../Contexts/UserContext";
-import { Component, useContext } from "react";
+import { Component } from "react";
 import "./NavigationMenu.scss";
 export default function NavigationMenu() {
   return (

@@ -1,20 +1,13 @@
-import axios from "axios";
-import { useState, useContext } from "react";
-import { UserContext } from "../../Contexts/UserContext";
 import {
   Button,
   Checkbox,
   IconButton,
   LocateIcon,
-  Option,
-  Select,
   SelectField,
   TextInput,
 } from "evergreen-ui";
 import "./Login.scss";
-import GeoLocationProvider, {
-  GeoLocation,
-} from "../../Contexts/LocationContext";
+import { GeoLocation } from "../../Contexts/LocationContext";
 import { BiLogInCircle } from "react-icons/bi";
 import { VscEye, VscEyeClosed } from "react-icons/vsc";
 import { Component } from "react";
@@ -85,7 +78,7 @@ export default class SignUp extends Component {
           <Checkbox
             checked={this.state.as_donor}
             onChange={() =>
-              this.setState((prev) => ({ as_donor: !prev.checked }))
+              this.setState((prev) => ({ as_donor: !prev.as_donor }))
             }
             label="Sign me as a donor"
           ></Checkbox>
