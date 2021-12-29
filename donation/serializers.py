@@ -9,7 +9,7 @@ class BloodRequestSerializer(serializers.ModelSerializer):
     receiver_full_name = serializers.SerializerMethodField(read_only=True)
     blood_group_name = serializers.SerializerMethodField(read_only=True)
     hospital_name = serializers.ReadOnlyField(source='hospital.name', read_only=True)
-    
+    hospital_city = serializers.ReadOnlyField(source='hospital.city', read_only=True)
     class Meta:
         model = BloodRequest
         fields = '__all__'
@@ -38,7 +38,7 @@ class BloodRequestResponseSerializer(serializers.ModelSerializer):
     first_name = serializers.ReadOnlyField(source='respondent.user.first_name')
     last_name = serializers.ReadOnlyField(source='respondent.user.last_name')
     phone = serializers.ReadOnlyField(source='respondent.phone.as_national')
-
+    blood_request = BloodRequestSerializer(read_only=True)
     class Meta:
         model =BloodRequestResponse
         fields = '__all__'

@@ -30,7 +30,7 @@ class PhoneShareRequest(TimeStampMixin):
     has_shared = models.BooleanField(default=False)
 
 class BloodRequestResponse(TimeStampMixin):
-    blood_request = models.ForeignKey(BloodRequest, on_delete=models.PROTECT)
+    blood_request = models.ForeignKey(BloodRequest, on_delete=models.PROTECT, related_name='blood_request')
     respondent = models.ForeignKey(Donor,on_delete=models.PROTECT, related_name='donor_profile')
     fullfilled =models.BooleanField(default=False)
 

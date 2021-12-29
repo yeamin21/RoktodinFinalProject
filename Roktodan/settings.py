@@ -60,7 +60,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 
-
+# "kolo.middleware.KoloMiddleware"
 ]
 
 ROOT_URLCONF = 'Roktodan.urls'

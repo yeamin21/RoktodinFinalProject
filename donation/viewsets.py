@@ -96,13 +96,9 @@ class BloodRequestResponseViewSet(viewsets.ModelViewSet):
         if self.request.GET.get('request_id'):
             queryset = queryset.filter(blood_request_id=self.request.GET.get('request_id'))
         return queryset
-    # def get_queryset(self):
-
-        #return BloodRequestResponse.objects.filter(bl ood_request_id=self.request.GET.get('request_id'))
-
-    def update(self, request, *args, **kwargs):
-        print('cxafsafas')
-        return super().update(request, *args, **kwargs)
+    # def update(self, request, *args, **kwargs):
+    #     print('cxafsafas')
+    #     return super().update(request, *args, **kwargs)
     def update(self, request, *args, **kwargs):
         instance= self.get_object()
         updated_instance = BloodRequestResponse.objects.get(id=instance.id)
@@ -110,4 +106,10 @@ class BloodRequestResponseViewSet(viewsets.ModelViewSet):
         updated_instance.fullfilled= request.data.get('fullfilled')
         updated_instance.save()
         serializer = self.get_serializer(updated_instance)
+        return Response(serializer.data)
+
+    @action(methods=['get'], detail=False, url_path='self_responses')
+    def self_responses(self, request, pk=None):
+        serializer = BloodRequestResponseSerializer(BloodRequestResponse.objects.filter(respondent=
+            Donor.objects.get(user_id=self.request.user.id)),many=True)
         return Response(serializer.data)
