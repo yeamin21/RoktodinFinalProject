@@ -141,3 +141,5 @@ cython_debug/
 #user defined
 .idea
 .vscode
+
+static/
