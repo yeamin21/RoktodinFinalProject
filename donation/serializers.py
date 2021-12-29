@@ -38,7 +38,14 @@ class BloodRequestResponseSerializer(serializers.ModelSerializer):
     first_name = serializers.ReadOnlyField(source='respondent.user.first_name')
     last_name = serializers.ReadOnlyField(source='respondent.user.last_name')
     phone = serializers.ReadOnlyField(source='respondent.phone.as_national')
-    blood_request = BloodRequestSerializer(read_only=True)
+    hospital_name = serializers.ReadOnlyField(source='blood_request.hospital.name', read_only=True)
+    hospital_city = serializers.ReadOnlyField(source='blood_request.hospital.city', read_only=True)
+    bag_managed = serializers.ReadOnlyField(source='blood_request.no_bag_managed', read_only=True)
+    bag_required = serializers.ReadOnlyField(source='blood_request.no_bag_required', read_only=True)
+    phone_additional = serializers.ReadOnlyField(source='blood_request.phone_additional.as_national', read_only=True)
+    is_emergency= serializers.ReadOnlyField(source='blood_request.is_emergency', read_only=True)
+    request_created_at = serializers.ReadOnlyField(source='blood_request.created_at', read_only=True)
+    needs_on= serializers.ReadOnlyField(source='blood_request.needs_on', read_only=True)
     class Meta:
         model =BloodRequestResponse
-        fields = '__all__'
+        fields ='__all__'
