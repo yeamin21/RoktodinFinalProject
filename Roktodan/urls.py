@@ -44,5 +44,5 @@ urlpatterns = [
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('social-auth/', include('social_django.urls', namespace="social")),
     path('api/user-location/', UserLocationViewSet.as_view()),
- 
 ]
+urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

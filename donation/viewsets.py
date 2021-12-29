@@ -110,6 +110,5 @@ class BloodRequestResponseViewSet(viewsets.ModelViewSet):
 
     @action(methods=['get'], detail=False, url_path='self_responses')
     def self_responses(self, request, pk=None):
-        serializer = BloodRequestResponseSerializer(BloodRequestResponse.objects.filter(respondent=
-            Donor.objects.get(user_id=self.request.user.id)),many=True)
+        serializer = BloodRequestResponseSerializer(BloodRequestResponse.objects.filter(respondent__user_id=self.request.user.id),many=True)
         return Response(serializer.data)
