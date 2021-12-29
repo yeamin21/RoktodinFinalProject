@@ -2,6 +2,7 @@
   {
     "model": "users.BloodGroup",
     "fields": {
+   
       "type": "a",
       "factor": "p"
     }
@@ -9,6 +10,7 @@
   {
     "model": "users.BloodGroup",
     "fields": {
+      
       "type": "a",
       "factor": "n"
     }
@@ -16,6 +18,7 @@
   {
     "model": "users.BloodGroup",
     "fields": {
+      
       "type": "b",
       "factor": "p"
     }
@@ -23,6 +26,7 @@
   {
     "model": "users.BloodGroup",
     "fields": {
+    
       "type": "b",
       "factor": "n"
     }
@@ -30,6 +34,8 @@
   {
     "model": "users.BloodGroup",
     "fields": {
+    
+
       "type": "o",
       "factor": "p"
     }
@@ -37,6 +43,7 @@
   {
     "model": "users.BloodGroup",
     "fields": {
+     
       "type": "o",
       "factor": "n"
     }
@@ -44,6 +51,7 @@
   {
     "model": "users.BloodGroup",
     "fields": {
+     
       "type": "ab",
       "factor": "p"
     }
@@ -51,6 +59,7 @@
   {
     "model": "users.BloodGroup",
     "fields": {
+      
       "type": "ab",
       "factor": "n"
     }

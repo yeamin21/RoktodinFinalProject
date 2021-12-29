@@ -4,8 +4,8 @@ from phonenumber_field.modelfields import PhoneNumberField
 import enum
 
 class TimeStampMixin(models.Model):
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
+    created_at = models.DateTimeField(auto_now_add=True,blank=True,null=True)
+    updated_at = models.DateTimeField(auto_now=True,blank=True,null=True)
 
     class Meta:
         abstract = True
@@ -43,7 +43,7 @@ class Address(models.Model):
     address = models.CharField(max_length=60) 
     postcode = models.IntegerField(max_length=6)
     city = models.CharField(max_length=40)
-    district = models.CharField(max_length=40)
-    country = models.CharField(max_length=40)
+    district = models.CharField(max_length=40,blank=True, null=True)
+    country = models.CharField(max_length=40,default='Bangladesh')
 
 
