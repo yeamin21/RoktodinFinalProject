@@ -1,0 +1,32 @@
+[
+  {
+    "model": "donation.Hospital",
+    "fields": {
+      "name": "BIRDEM General Hospital",
+      "address": "Shahbag Square, 122 Kazi Nazrul Islam Ave",
+      "city": "Dhaka",
+      "area_zip": "1000",
+      "country": "Bangladesh"
+    }
+  },
+  {
+    "model": "donation.Hospital",
+    "fields": {
+      "name": "Japan Bangladesh Friendship Hospital",
+      "address": "Zigatola Bus Stand, 55 Satmasjid Road",
+      "city": "Dhaka",
+      "area_zip": "1209",
+      "country": "Bangladesh"
+    }
+  },
+  {
+    "model": "donation.Hospital",
+    "fields": {
+      "name": "Bangladesh Specialized Hospital",
+      "address": "21 Mirpur Rd",
+      "city": "Dhaka",
+      "area_zip": "1207",
+      "country": "Bangladesh"
+    }
+  }
+]
