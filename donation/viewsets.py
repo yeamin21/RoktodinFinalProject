@@ -53,16 +53,16 @@ class PhoneShareRequestViewSet(viewsets.ModelViewSet):
     def create(self, request, *args, **kwargs):
         account_sid = 'AC547bc494b43d6a0be0a094ded024b50a'
         auth_token = '025a796f0e52f657f2831ff4fd599a03'
-        client = Client(account_sid, auth_token)
+        # client = Client(account_sid, auth_token)
         receiver =  Donor.objects.get(user_id = request.data['receiver'])
         MSG_REQUEST_PHONE= 'You Have Received a Phone Number Sharing Request.\nPlease login to your ROKTODAN account and check.'
         PhoneShareRequest.objects.create(sender = request.user, receiver = receiver)
-        client.messages.create(
-            messaging_service_sid='MG2ee740e3452ae46afa8b88871e13b4a0',
-            body=MSG_REQUEST_PHONE,
-            to=receiver.phone.as_international,
-            from_='+16816428342'
-        )
+        # client.messages.create(
+        #     messaging_service_sid='MG2ee740e3452ae46afa8b88871e13b4a0',
+        #     body=MSG_REQUEST_PHONE,
+        #     to=receiver.phone.as_international,
+        #     from_='+16816428342'
+        # )
         return response.Response({"message":'Created__OK'},status.HTTP_201_CREATED)
 
 # @api_view(["POST"])  

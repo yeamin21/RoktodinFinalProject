@@ -20,7 +20,6 @@ class DonorSerializer(serializers.ModelSerializer):
     last_name = serializers.ReadOnlyField(source='user.last_name')  
     blood_type = serializers.ReadOnlyField(source='blood_group.type')
     blood_factor = serializers.ReadOnlyField(source='blood_group.get_factor_display')
-   
     able_to_donate = serializers.ReadOnlyField()
     distance = serializers.SerializerMethodField()
     city = serializers.SerializerMethodField(read_only=True)

@@ -27,7 +27,7 @@ SECRET_KEY = '92pbw+0##)=p70n=yn%!!4#l(#ch5+l@d7@=3!nb2kt0kdz1^_'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['yeamin21.pythonanywhere.com','localhost']
+ALLOWED_HOSTS = ['yeamin21.pythonanywhere.com','localhost','127.0.0.1']
 
 
 # Application definition

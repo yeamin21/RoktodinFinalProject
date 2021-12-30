@@ -51,7 +51,10 @@ class AddressViewSet(viewsets.ModelViewSet):
         return response.Response(serializer.errors, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 class DonorViewSet(viewsets.ModelViewSet):
     serializer_class = DonorSerializer
-    queryset = Donor.objects.filter(is_donor=True )
+    queryset = Donor.objects.all()
+
+    def get_queryset(self):
+        return super().get_queryset().filter(is_donor=True )
 
     def create(self, request, *args, **kwargs):
         data=request.data
@@ -62,8 +65,8 @@ class DonorViewSet(viewsets.ModelViewSet):
             return response.Response(serializer.data, status=status.HTTP_201_CREATED)
         return response.Response(serializer.errors, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
     def list(self, request, *args, **kwargs):
-        serializer = DonorSerializer(self.queryset,many=True,context={'request': request}).data
-        return response.Response(serializer)
+        serializer = DonorSerializer(self.get_queryset(),many=True,context={'request': request})
+        return response.Response(serializer.data)
 
 class BloodGroupViewSet(viewsets.ModelViewSet):
     serializer_class = BloodGroupSerializer
