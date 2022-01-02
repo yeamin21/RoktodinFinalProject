@@ -45,7 +45,7 @@ class AddressViewSet(viewsets.ModelViewSet):
         data=request.data
         data['user'] = request.user.id
         serializer = AddressSerializer(data=request.data)
-        if serializer.is_valid():
+        if serializer.is_valid(raise_exception=True):
             self.perform_create(serializer)
             return response.Response(serializer.data, status=status.HTTP_201_CREATED)
         return response.Response(serializer.errors, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
