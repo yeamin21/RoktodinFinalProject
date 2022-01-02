@@ -49,9 +49,4 @@ class BloodRequestResponseSerializer(serializers.ModelSerializer):
     class Meta:
         model =BloodRequestResponse
         fields ='__all__'
-
-    def validate(self, attrs):
-        if BloodRequestResponse.objects.get(blood_request_id=attrs['request_id'],respondent_id=attrs['responder']).exists() :
-            raise serializers.ValidationError("Already responded to this request")
-        return attrs
        
