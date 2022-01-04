@@ -88,13 +88,14 @@ class BloodRequestResponseViewSet(viewsets.ModelViewSet):
             return response.Response({'You are not registered as a donor'}, status=status.HTTP_400_BAD_REQUEST)
         if blood_request.receiver == request.user:
             return response.Response({'You Cant Respond to Your Own Request'}, status=status.HTTP_400_BAD_REQUEST)
-      
+        elif BloodRequestResponse.objects.filter(blood_request=request_id, respondent=responder).exists():
+            return response.Response({'You have already responded to this request'}, status=status.HTTP_400_BAD_REQUEST)
         else:
             serializer = BloodRequestResponseSerializer(data={'blood_request':blood_request.id , 'respondent':responder.id})
             if serializer.is_valid(raise_exception=True):
                 self.perform_create(serializer)
                 return response.Response(serializer.data, status=status.HTTP_201_CREATED)
-        return response.Response(serializer.errors)
+            return response.Response(serializer.errors)
     def get_queryset(self):
         queryset = super().get_queryset()
         if self.request.GET.get('request_id'):
